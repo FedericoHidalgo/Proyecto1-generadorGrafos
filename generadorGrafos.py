@@ -11,11 +11,4 @@ class Nodo:
         }
 
     def getNodo(self):
-        print("El nodo es:")
         print(self.valor)
-
-nodo1 = Nodo(5)
-nodo2 = Nodo(12)
-
-nodo1.getNodo()
-nodo2.getNodo()
