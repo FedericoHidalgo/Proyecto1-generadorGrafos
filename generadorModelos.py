@@ -1,0 +1,1 @@
+from generadorGrafos import Grafo
