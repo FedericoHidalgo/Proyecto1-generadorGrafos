@@ -18,9 +18,6 @@ class Grafo:
             """
         }
 
-    def __str__(self):
-        pass
-
     def agregarNodo(self, id):
         """
         Agrega un nuevo nodo al grafo
@@ -43,5 +40,16 @@ class Grafo:
             self.aristas[id] = Arista(V0, V1, id)   #Agrega arista
         return self.aristas[id]
 
+    def __str__(self):
+        """
+        Convertir grafo en string
+        """
+        graf = "Nodos: "
+        for i in self.nodos:
+            graf += i + ','
 
+        graf = "\nAristas: "
+        for i in self.aristas:
+            graf += i + ','
+        return graf
 
