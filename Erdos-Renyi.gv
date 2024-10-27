@@ -1,4 +1,4 @@
-digraphErdos-Renyi{
+digraph Erdos-Renyi{
 0;
 1;
 2;
@@ -9,7 +9,7 @@ digraphErdos-Renyi{
 7;
 8;
 9;
-7;
-5;
+1;
+4;
 <->;
 }

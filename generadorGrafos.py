@@ -59,7 +59,7 @@ class Grafo:
         """
         cadena = ''
         #Formato DOT
-        cadena += 'digraph' + id + '{\n'
+        cadena += 'digraph ' + id + '{\n'
         #Imprimir los nodos
         for nodo in self.nodos:
             cadena += str(nodo) + ';\n'
