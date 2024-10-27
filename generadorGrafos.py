@@ -46,10 +46,33 @@ class Grafo:
         """
         graf = "Nodos: "
         for i in self.nodos:
-            graf += i + ','
+            graf += str(i) + ','
 
         graf = "\nAristas: "
         for i in self.aristas:
-            graf += i + ','
-        return graf
+            graf += str(i) + ','
+        return str(graf)
+    
+    def graphViz(self, id):
+        """
+        Genera un archivo con formato GraphViz
+        """
+        cadena = ''
+        #Formato DOT
+        cadena += 'digraph' + id + '{\n'
+        #Imprimir los nodos
+        for nodo in self.nodos:
+            cadena += str(nodo) + ';\n'
+        #Imprimir las aristas
+        for key, arista in self.aristas.items():
+            cadena += str(arista) + ';\n'
+        #Final del formato
+        cadena += '}'
 
+        nombreArchivo = id + '.gv'
+        #Escribimos el archivo de salida
+        archivo = open(nombreArchivo, 'w+')
+        archivo.write(cadena)
+        archivo.close()
+        print('Archivo GraphViz generado:' + nombreArchivo + '\n')
+        

@@ -22,4 +22,4 @@ def modeloErdosRenyi(n, m):
     return G
 
 x = modeloErdosRenyi(10, 9)
-x
+x.graphViz("Erdos-Renyi")
