@@ -8,7 +8,7 @@ class Arista:
         """
         self.nodo0 = nodo0  #Nodo de origen
         self.nodo1 = nodo1  #Nodo de destino  
-        self.id =  str(nodo0) + str(id) + str(nodo1)    #Identificador de la arista
+        self.arista =  str(nodo0) + str(id) + str(nodo1)    #Identificador de la arista
         self.dirigido = dirigido #Arista definida o no
         self.attr = {
             """
@@ -20,10 +20,10 @@ class Arista:
         """
         Convertir nodo en string
         """
-        return str(self.id)
+        return str(self.arista)
 
     def getArista(self):
         """
         Método para imprimir los valores de la Arista
         """     
-        print(self.id)
+        print(self.arista)
