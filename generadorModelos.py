@@ -18,7 +18,7 @@ def modeloErdosRenyi(n, m):
         v2 = random.randint(0, n-1)
         #Si v1 != v2 creamos una arista
         if v1 != v2:
-            G.agregarArista(str(v1), str(v2),'<->')
+            G.agregarArista(v1, v2,' -> ')
     return G
 
 x = modeloErdosRenyi(10, 9)

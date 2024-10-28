@@ -34,17 +34,14 @@ class Grafo:
         Agrega una arista al grafo
         """
         arista = Arista(n1, n2, id)
-        print(arista)
         arista = self.aristas.get(str(arista))   #Verifica si la arista existe
-        print("¿Existe?: ")
-        print(arista)
         #Si no existe se crea uno nuevo        
         if arista == None:
             V0 = self.agregarNodo(n1)   #Agrega nodo base
             V1 = self.agregarNodo(n2)   #Agrega nodo adyacente 
             arista = str(Arista(V0, V1, id))        
             self.aristas[arista] = arista   #Agrega arista
-        print(arista)
+        return arista
 
     def __str__(self):
         """
@@ -94,7 +91,7 @@ class Grafo:
         """
         cadena = self.crearCadena(id)
         archivo = self.crearArchivo(id, cadena)
-        print('Archivo GraphViz generado:' + archivo + '\n')
+        print('Archivo GraphViz generado: ' + archivo + '\n')        
         
     def getDiccionarios(self):
         """
@@ -104,19 +101,3 @@ class Grafo:
         print(self.nodos.items())
         print("Aristas: ")
         print(self.aristas.items())
-        
-x = Grafo()
-x1 = 10
-x2 = 20
-x.agregarArista(x1, x2, ' -> ')
-
-x3 = 100
-x4 = 200
-x.agregarArista(x3, x4, ' -> ')
-
-x5 = 1000
-x6 = 2000
-x.agregarArista(x5, x6, ' -> ')
-
-x.getDiccionarios()
-x.graphViz("Erdos-Renyi")
