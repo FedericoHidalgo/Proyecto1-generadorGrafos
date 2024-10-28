@@ -40,3 +40,10 @@ def modeloGilbert(p, n):
                 if(j != i):
                     G.agregarArista(i, j,' -> ')
     return G
+
+def modeloGeograficoSimple():
+    """
+    Coloca n vértices en un rectangulo unitario
+    con coordenadas normales y coloca una arista
+    entre cada par que queda a distancia r o menor
+    """

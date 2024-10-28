@@ -26,7 +26,7 @@ class Grafo:
         #Si no existe se crea uno nuevo        
         if nodo == None:
             nodo = Nodo(id)
-            self.nodos[id] = str(nodo)    
+            self.nodos[id] = str(nodo)  #Agrega un nodo   
         return nodo
 
     def agregarArista(self, n1, n2, id):
