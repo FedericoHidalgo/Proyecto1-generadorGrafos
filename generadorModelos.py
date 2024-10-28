@@ -21,5 +21,9 @@ def modeloErdosRenyi(n, m):
             G.agregarArista(v1, v2,' -> ')
     return G
 
-x = modeloErdosRenyi(10, 9)
-x.graphViz("Erdos-Renyi")
+def modeloGilbert():
+    """
+    Crea m aristas y n vértices, coloca una
+    arista entra cada par independiente y de
+    forma uniforme con probabilidad p
+    """
