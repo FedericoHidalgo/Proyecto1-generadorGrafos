@@ -21,9 +21,22 @@ def modeloErdosRenyi(n, m):
             G.agregarArista(v1, v2,' -> ')
     return G
 
-def modeloGilbert():
+def modeloGilbert(p, n):
     """
     Crea m aristas y n vértices, coloca una
     arista entra cada par independiente y de
     forma uniforme con probabilidad p
     """
+    G = Grafo()
+    #Creamos los nodos
+    for i in range(n):
+        G.agregarNodo(i)
+    #Creamos las aristas
+    for i in range(n):
+        for j in range(n):
+            #La arista se crea si es menor a p
+            if random.random() < p:
+                #No se crea aristas hacia el mismo nodo
+                if(j != i):
+                    G.agregarArista(i, j,' -> ')
+    return G
