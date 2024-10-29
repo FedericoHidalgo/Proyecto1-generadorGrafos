@@ -85,3 +85,11 @@ def modeloGeograficoSimple(n, r):
                 if d <= r:
                      G.agregarArista(i, j,' -> ')
     return G
+
+def modeloBarabasiAlbert():
+    """
+    Colocar n nodos uno por uno, asignando a cada uno d aristas 
+    a vértices distintos de tal manera que la probabilidad de que 
+    el vértice nuevo se conecte a un vértice existente v es 
+    proporcional a la cantidad de aristas que v tiene actualmente.
+    """
