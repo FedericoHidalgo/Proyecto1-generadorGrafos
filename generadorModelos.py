@@ -1,4 +1,4 @@
-import random
+import random, math
 from generadorGrafos import Grafo
 
 def modeloErdosRenyi(n, m):
@@ -41,9 +41,47 @@ def modeloGilbert(p, n):
                     G.agregarArista(i, j,' -> ')
     return G
 
-def modeloGeograficoSimple():
+def distanciaNodos(n1, n2):
+    """
+    Método que calcula la distancia entre dos puntos
+    representados por nodos
+    """
+    #Coordenadas 'X' n_[0]
+    #Coordenadas 'Y' n_[1]
+    n1 = list(n1)
+    n2 = list(n2)
+    d = math.sqrt((n2[0] - n1[0])**2 + (n2[1] - n1[1])**2)
+    return d
+
+def modeloGeograficoSimple(n, r):
     """
     Coloca n vértices en un rectangulo unitario
     con coordenadas normales y coloca una arista
     entre cada par que queda a distancia r o menor
     """
+    G = Grafo()
+    #Diccionario de coordenadas para cada nodo
+    posicion = {}
+    #Creamos los nodos
+    for i in range(n):
+        G.agregarNodo(i)
+        #A cada nodo i le corresponde una coordenada {x,y} 
+        #de valor (0,0) hasta (1,1) generada con random
+        x = random.random()
+        y = random.random()
+        posicion[i] = {x, y}        
+    print("Diccionario de posición: ")
+    print(posicion.items())
+    #Se crea una arista entre cada par de nodos con distancia
+    #menor a r
+    for i in range(n):
+        n1 = posicion.get(i)    #Coordenadas del nodo "i"        
+        for j in range(n):
+            n2 = posicion.get(j)    #Coordenadas del nodo "j"
+            #No se crea aristas hacia el mismo nodo
+            if i != j:
+                #Obtenemos distancia r
+                d = distanciaNodos(n1, n2)
+                if d <= r:
+                     G.agregarArista(i, j,' -> ')
+    return G
