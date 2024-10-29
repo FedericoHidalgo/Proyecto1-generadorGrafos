@@ -1,12 +1,12 @@
 import random, math
 from generadorGrafos import Grafo
 
-def modeloErdosRenyi(n, m):
+def modeloErdosRenyi(n, m, dirigido = False):
     """
     Crea n vertices y elige al azar m pares de
     vertices para formar las aristas
     """
-    G = Grafo()
+    G = Grafo(dirigido)
     #Creamos los nodos
     for i in range(n):
         G.agregarNodo(i)
@@ -21,13 +21,13 @@ def modeloErdosRenyi(n, m):
             G.agregarArista(v1, v2,' -> ')
     return G
 
-def modeloGilbert(p, n):
+def modeloGilbert(p, n, dirigido = False):
     """
     Crea m aristas y n vértices, coloca una
     arista entra cada par independiente y de
     forma uniforme con probabilidad p
     """
-    G = Grafo()
+    G = Grafo(dirigido)
     #Creamos los nodos
     for i in range(n):
         G.agregarNodo(i)
@@ -53,13 +53,13 @@ def distanciaNodos(n1, n2):
     d = math.sqrt((n2[0] - n1[0])**2 + (n2[1] - n1[1])**2)
     return d
 
-def modeloGeograficoSimple(n, r):
+def modeloGeograficoSimple(n, r, dirigido = False):
     """
     Coloca n vértices en un rectangulo unitario
     con coordenadas normales y coloca una arista
     entre cada par que queda a distancia r o menor
     """
-    G = Grafo()
+    G = Grafo(dirigido)
     #Diccionario de coordenadas para cada nodo
     posicion = {}
     #Creamos los nodos
@@ -69,9 +69,7 @@ def modeloGeograficoSimple(n, r):
         #de valor (0,0) hasta (1,1) generada con random
         x = random.random()
         y = random.random()
-        posicion[i] = {x, y}        
-    print("Diccionario de posición: ")
-    print(posicion.items())
+        posicion[i] = {x, y}
     #Se crea una arista entre cada par de nodos con distancia
     #menor a r
     for i in range(n):
@@ -86,10 +84,16 @@ def modeloGeograficoSimple(n, r):
                      G.agregarArista(i, j,' -> ')
     return G
 
-def modeloBarabasiAlbert():
+def modeloBarabasiAlbert(n, d, dirigido = False):
     """
     Colocar n nodos uno por uno, asignando a cada uno d aristas 
     a vértices distintos de tal manera que la probabilidad de que 
     el vértice nuevo se conecte a un vértice existente v es 
     proporcional a la cantidad de aristas que v tiene actualmente.
     """
+    G = Grafo(dirigido)
+    #Creamos los nodos
+    for i in range(n):
+        G.agregarNodo(i)
+
+    return G

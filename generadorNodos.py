@@ -7,6 +7,7 @@ class Nodo:
         Constructor
         """
         self.id = id      #Identificador del nodo
+        self.grado = 0
         self.attr = {
             """
             Diccionario en construcción
