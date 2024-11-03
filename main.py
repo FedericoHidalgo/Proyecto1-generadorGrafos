@@ -28,3 +28,12 @@ for i in numNodos:
     nombreArchivo = "GeograficoSimple " + str(i) + " nodos"
     #Generamos el archivo .gv
     modelo.graphViz(nombreArchivo)
+
+#Modelo Barabasi-Albert
+d = 8 #Número máximo de conexiones por vertice
+for i in numNodos:
+    #Generamos el modelo para 30, 100 y 500 nodos
+    modelo = modeloBarabasiAlbert(i, d)
+    nombreArchivo = "Barabasi-Albert " + str(i) + " nodos"
+    #Generamos el archivo .gv
+    modelo.graphViz(nombreArchivo)

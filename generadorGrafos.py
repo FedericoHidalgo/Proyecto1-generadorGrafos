@@ -42,7 +42,7 @@ class Grafo:
             arista = str(Arista(V0, V1, id))        
             self.aristas[arista] = arista   #Agrega arista
         return arista
-
+       
     def __str__(self):
         """
         Convertir grafo en string

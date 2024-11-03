@@ -84,16 +84,72 @@ def modeloGeograficoSimple(n, r, dirigido = False):
                      G.agregarArista(i, j,' -> ')
     return G
 
-def modeloBarabasiAlbert(n, d, dirigido = False):
+def listaAleatoria(inicio, fin):
+    """
+    Método que genera una lista de números aleatorios
+    """
+    lista = random.sample(range(inicio, fin), fin-inicio)
+    return lista
+
+def modeloBarabasiAlbert(n, d=0, dirigido = False):
     """
     Colocar n nodos uno por uno, asignando a cada uno d aristas 
     a vértices distintos de tal manera que la probabilidad de que 
     el vértice nuevo se conecte a un vértice existente v es 
     proporcional a la cantidad de aristas que v tiene actualmente.
     """
-    G = Grafo(dirigido)
+    G = Grafo(dirigido)  
+    #Diccionario de grados de conexión para cada nodo
+    grado = {}  
     #Creamos los nodos
     for i in range(n):
         G.agregarNodo(i)
-
+        #A cada nodo le corresponde un grado cero al ser creado
+        grado[i] = 0 
+    for i in range(1, n):
+        #print("\nNodo origen: ", i)
+        lista = listaAleatoria(0, i)
+        #print("Lista aleatoria creada: ", lista)
+        for j in range(i):
+            #print("Posición a evaluar: ", j)
+            gradoRandom = grado.get(lista[j])
+            #print("Nodo destino: ", lista[j])
+            #print("Grado del nodo: ", gradoRandom)
+            p = 1 - (gradoRandom / d)
+            #print("Probabilidad de conexión: ", p)
+            r = random.random()
+            #print("Num random: ", r)
+            #print("1) r < p: ", r, " < ", p)
+            if r < p:
+                #print("OK")
+                #print("2) ¿Es el mismo nodo?")
+                if lista[j] != i:
+                    #print("No, se realiza la conexión")
+                    G.agregarArista(i, lista[j], ' -> ')
+                    #print("Grado de origen", i, ":", grado.get(i))
+                    #print("Grado de destino", lista[j], ":", grado.get(lista[j]))
+                    grado[lista[j]] += 1 
+                    grado[i] += 1
+                    #print("Nuevo grado de origen", i, ":", grado.get(i))
+                    #print("Nuevo grado de destino", lista[j], ":", grado.get(lista[j])) 
+                else:
+                    pass
+                    #print("Si, no se conecta")
+            else:
+                pass
+                #print("No se cumple la condición 1")
+    #G.getDiccionarios()
+    print("Grado del grafo creado: ", grado)
     return G
+
+#Numero de muestras que se graficaran por modelo
+#numNodos = [30, 100, 500]
+numNodos = [100]
+d = 8
+#Modelo Barabasi Albert
+for i in numNodos:
+    #Generamos el modelo para 30, 100 y 500 nodos
+    modelo = modeloBarabasiAlbert(i, d)
+    nombreArchivo = "Barabasi-Albert " + str(i) + " nodos"
+    #Generamos el archivo .gv
+    modelo.graphViz(nombreArchivo)

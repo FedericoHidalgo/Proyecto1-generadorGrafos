@@ -9,7 +9,7 @@ class Arista:
         self.nodo0 = nodo0  #Nodo de origen
         self.nodo1 = nodo1  #Nodo de destino  
         self.arista =  str(nodo0) + str(id) + str(nodo1)    #Identificador de la arista
-        self.dirigido = dirigido #Arista definida o no
+        self.dirigido = dirigido #Arista dirigida o no
         self.attr = {
             """
             Diccionario en construcción
