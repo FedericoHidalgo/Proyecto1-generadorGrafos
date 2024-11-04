@@ -1,10 +1,25 @@
 import random, math
 from generadorGrafos import Grafo
 
-def modeloMalla(n, m, dirigido = False):
+def modeloMalla(m, n, dirigido = False):
     """
-    Crea n*m nodos y une en aristas con el nodo ni+1,j y ni, j+1
+    Crea n*m nodos y une en aristas con el nodo n(i+1,j) y n(i, j+1)
     """
+    G = Grafo(dirigido)
+    #Creamos la malla
+    for i in range(m):
+        for j in range(n):
+            nodoMalla = str(i) + str(',') + str(j)
+            G.agregarNodo(nodoMalla)
+            if j <= (n-2):
+                nodoLateral = str(i) + str(',') + str(j+1)
+                G.agregarArista(nodoMalla, nodoLateral, ' -> ')
+            if i <= (m-2):
+                nodoInferior = str(i+1) + str(',') + str(j)
+                G.agregarArista(nodoMalla, nodoInferior, ' -> ')
+
+    return G
+
 
 def modeloErdosRenyi(n, m, dirigido = False):
     """
@@ -170,6 +185,9 @@ def modeloDorogovtsevMendes(n, dirigido = False):
     return G
 
 
-#Numero de muestras que se graficaran por modelo
-numNodos = [30, 100, 500]
-#numNodos = [10]
+
+#Generamos el modelo para 30, 100 y 500 nodos
+modelo = modeloMalla(6, 5)
+nombreArchivo = "Malla " + str(30) + " nodos"
+#Generamos el archivo .gv
+modelo.graphViz(nombreArchivo)
