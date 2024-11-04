@@ -6,17 +6,13 @@ def modeloMalla(m, n, dirigido = False):
     Crea n*m nodos y une en aristas con el nodo n(i+1,j) y n(i, j+1)
     """
     G = Grafo(dirigido)
-    #Creamos la malla
-    for i in range(m):
-        for j in range(n):
-            nodoMalla = str(i) + str(j)
-            G.agregarNodo(nodoMalla)
-            if j <= (n-2):
-                nodoLateral = str(i) + str(j+1)
-                G.agregarArista(nodoMalla, nodoLateral, ' -> ')
-            if i <= (m-2):
-                nodoInferior = str(i+1) + str(j)
-                G.agregarArista(nodoMalla, nodoInferior, ' -> ')
+    #Creamos el nodo
+    for i in range(n*m):
+        G.agregarNodo(i)
+    y = len(G.nodos) / m
+    print(y)
+    #x = G.getDiccionarios()
+    #print(x)    
 
     return G
 
