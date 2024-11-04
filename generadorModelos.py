@@ -1,11 +1,35 @@
 import random, math
 from generadorGrafos import Grafo
 
+def condicionesIniciales(nodos = 1, aristas =  1, v =0 , e = 0):
+    """
+    Evalua si los datos ingresados al modelo de Grafo son los básicos
+    necesarios para generarse:
+    nodos: núm de nodos con los que se desea generar el modelo
+    aristas: núm de aristas con los que se desea generar el modelo
+    n: nodos minimos de trabajo
+    m: aristas minimas necesarias
+    """
+    if nodos > v and aristas > e:
+        return True
+    else:
+        print("\n\n¡ Datos de inicio de modelo incorrectos !") 
+        return False 
+
 def modeloMalla(m, n, dirigido = False):
     """
     Crea n*m nodos y une en aristas con el nodo n(i+1,j) y n(i, j+1)
     """
     G = Grafo(dirigido)
+    #Condición de inicio
+    columnas = 1    #>1
+    filas = 1       #>1
+    inicio = condicionesIniciales(m, n, columnas, filas)
+    if inicio != True:
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
+
     #Creamos los nodos
     for i in range(n*m):
         G.agregarNodo(i)    
@@ -27,6 +51,15 @@ def modeloErdosRenyi(n, m, dirigido = False):
     vertices para formar las aristas
     """
     G = Grafo(dirigido)
+    #Condiciones iniciales
+    nodos = 1   #>1
+    aristas = n-2   #>=n-1
+    inicio = condicionesIniciales(n, m, nodos, aristas)
+    if inicio != True:
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
+
     #Creamos los nodos
     for i in range(n):
         G.agregarNodo(i)
@@ -48,6 +81,15 @@ def modeloGilbert(p, n, dirigido = False):
     forma uniforme con probabilidad p
     """
     G = Grafo(dirigido)
+    #Condiciones iniciales
+    nodos = 1   #>0
+    probabilidad = 0    #[0, 1]
+    inicio = condicionesIniciales(n, p, nodos, probabilidad)
+    if inicio != True or p > 1:
+        print("\n\n¡ Datos de inicio de modelo incorrectos !")
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
     #Creamos los nodos
     for i in range(n):
         G.agregarNodo(i)
@@ -80,6 +122,15 @@ def modeloGeograficoSimple(n, r, dirigido = False):
     entre cada par que queda a distancia r o menor
     """
     G = Grafo(dirigido)
+    #Condiciones iniciales
+    nodos = 1   #>0
+    distancia = 0   #[0,1]
+    inicio = condicionesIniciales(n, r, nodos, distancia)
+    if inicio != True or r > 1:
+        print("\n\n¡ Datos de inicio de modelo incorrectos !")
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
     #Diccionario de coordenadas para cada nodo
     posicion = {}
     #Creamos los nodos
@@ -119,6 +170,14 @@ def modeloBarabasiAlbert(n, d=0, dirigido = False):
     proporcional a la cantidad de aristas que v tiene actualmente.
     """
     G = Grafo(dirigido)  
+    #Condiciones iniciales
+    nodos = 1   #>1
+    aristas = 1   #>1
+    inicio = condicionesIniciales(n, d, nodos, aristas)
+    if inicio != True:
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
     #Diccionario de grados de conexión para cada nodo
     grado = {}  
     #Creamos los nodos
@@ -157,6 +216,13 @@ def modeloDorogovtsevMendes(n, dirigido = False):
     se selecciona una arista al azar y se crean aristas entre el nodo nuevo y 
     los extremos de la arista seleccionada.
     """
+    #Condiciones iniciales
+    nodos = 2   #>=3
+    inicio = condicionesIniciales(n, v=nodos)
+    if inicio != True:
+        #Se interrumpe la ejecución del método si no se cumplen las
+        #condiciones de inicio
+        return
     G = Grafo(dirigido)
     #Diccionario para almacenar las aristas del triangulo
     triangulo = {}
@@ -183,4 +249,3 @@ def modeloDorogovtsevMendes(n, dirigido = False):
         for j in [0, 1]:
             G.agregarArista(i, triangulo[aristaTriangulo][j], ' -> ')
     return G
-
