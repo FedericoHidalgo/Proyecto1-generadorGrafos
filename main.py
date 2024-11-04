@@ -2,6 +2,18 @@ from generadorModelos import *
 #Numero de muestras que se graficaran por modelo
 numNodos = [30, 100, 500]
 
+#Generamos el modelo Malla para 30 nodos
+modelo = modeloMalla(6, 5)
+nombreArchivo = "Malla " + str(30) + " nodos"
+#Generamos el archivo .gv
+modelo.graphViz(nombreArchivo)
+
+#Generamos el modelo Malla para 100 nodos
+modelo = modeloMalla(10, 10)
+nombreArchivo = "Malla " + str(100) + " nodos"
+#Generamos el archivo .gv
+modelo.graphViz(nombreArchivo)
+
 #Modelo Erdos - Renyi
 for i in numNodos:
     #Generamos el modelo para 30, 100 y 500 nodos
