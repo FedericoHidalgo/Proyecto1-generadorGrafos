@@ -37,3 +37,10 @@ for i in numNodos:
     nombreArchivo = "Barabasi-Albert " + str(i) + " nodos"
     #Generamos el archivo .gv
     modelo.graphViz(nombreArchivo)
+
+for i in numNodos:
+    #Generamos el modelo para 30, 100 y 500 nodos
+    modelo = modeloDorogovtsevMendes(i)
+    nombreArchivo = "Dorogovtsev-Mendes " + str(i) + " nodos"
+    #Generamos el archivo .gv
+    modelo.graphViz(nombreArchivo)

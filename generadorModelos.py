@@ -1,6 +1,11 @@
 import random, math
 from generadorGrafos import Grafo
 
+def modeloMalla(n, m, dirigido = False):
+    """
+    Crea n*m nodos y une en aristas con el nodo ni+1,j y ni, j+1
+    """
+
 def modeloErdosRenyi(n, m, dirigido = False):
     """
     Crea n vertices y elige al azar m pares de
@@ -168,10 +173,3 @@ def modeloDorogovtsevMendes(n, dirigido = False):
 #Numero de muestras que se graficaran por modelo
 numNodos = [30, 100, 500]
 #numNodos = [10]
-
-for i in numNodos:
-    #Generamos el modelo para 30, 100 y 500 nodos
-    modelo = modeloDorogovtsevMendes(i)
-    nombreArchivo = "Dorogovtsev-Mendes " + str(i) + " nodos"
-    #Generamos el archivo .gv
-    modelo.graphViz(nombreArchivo)
