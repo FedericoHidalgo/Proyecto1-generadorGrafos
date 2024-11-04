@@ -138,22 +138,36 @@ def modeloDorogovtsevMendes(n, dirigido = False):
     los extremos de la arista seleccionada.
     """
     G = Grafo(dirigido)
-    #Crear el triangulo inicial
-    for i in range(3):
+    #Diccionario para almacenar las aristas del triangulo
+    triangulo = {}
+    #Creamos los nodos
+    for i in range(n):
         G.agregarNodo(i)
     #Crear las aristas del triangulo inicial
-    for i in range(3):
-        for j in range(3):
+    #Nodos 0 y 1
+    for i in [0, 1]:
+        #Nodos 1 y 2
+        for j in [1, 2]:
+            #Evitamos conexiones al mismo nodo
             if i != j:
                 G.agregarArista(i, j, ' -> ')
-    G.getDiccionarios
-
+                #Guardamos los nodos donde se conectan las aristas
+                #1, 2 y 3 respectivamente
+                triangulo[i+j] = i, j
+    #Creamos las aristas restantes
+    for i in range(4, n):
+        #Seleccionamos de forma aleatoria la arista de conexión
+        aristaTriangulo = random.randint(1, 3)
+        #Creamos dos aristas entre el nodo creado y los dos extremos 
+        #de la arista obtenida de forma random
+        for j in [0, 1]:
+            G.agregarArista(i, triangulo[aristaTriangulo][j], ' -> ')
     return G
 
 
 #Numero de muestras que se graficaran por modelo
-#numNodos = [30, 100, 500]
-numNodos = [1]
+numNodos = [30, 100, 500]
+#numNodos = [10]
 
 for i in numNodos:
     #Generamos el modelo para 30, 100 y 500 nodos
