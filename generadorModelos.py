@@ -6,13 +6,17 @@ def modeloMalla(m, n, dirigido = False):
     Crea n*m nodos y une en aristas con el nodo n(i+1,j) y n(i, j+1)
     """
     G = Grafo(dirigido)
-    #Creamos el nodo
+    #Creamos los nodos
     for i in range(n*m):
-        G.agregarNodo(i)
-    y = len(G.nodos) / m
-    print(y)
-    #x = G.getDiccionarios()
-    #print(x)    
+        G.agregarNodo(i)    
+    #Creamos la malla
+    for i in range(m*n):
+        #Conectamos nodos de la misma fila
+        if (i % n) != 0:
+            G.agregarArista(i-1, i, ' -> ')
+        #Conectamos nodos de la misma columna
+        if i > 0 and (i + n) < m*n+1:
+            G.agregarArista(i-1, (i-1)+n, ' -> ')
 
     return G
 
@@ -180,8 +184,3 @@ def modeloDorogovtsevMendes(n, dirigido = False):
             G.agregarArista(i, triangulo[aristaTriangulo][j], ' -> ')
     return G
 
-#Generamos el modelo para 500 nodos
-modelo = modeloMalla(25, 20)
-nombreArchivo = "Malla " + str(500) + " nodos"
-#Generamos el archivo .gv
-modelo.graphViz(nombreArchivo)

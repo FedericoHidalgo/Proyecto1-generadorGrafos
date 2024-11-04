@@ -14,6 +14,12 @@ nombreArchivo = "Malla " + str(100) + " nodos"
 #Generamos el archivo .gv
 modelo.graphViz(nombreArchivo)
 
+#Generamos el modelo para 500 nodos
+modelo = modeloMalla(25, 20)
+nombreArchivo = "Malla " + str(500) + " nodos"
+#Generamos el archivo .gv
+modelo.graphViz(nombreArchivo)
+
 #Modelo Erdos - Renyi
 for i in numNodos:
     #Generamos el modelo para 30, 100 y 500 nodos
